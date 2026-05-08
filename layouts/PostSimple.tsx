@@ -23,59 +23,48 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
     <SectionContainer>
       <ScrollTopAndComment />
       <article>
-        <div>
-          <header>
-            <div className="space-y-1 border-b border-gray-200 pb-10 text-center dark:border-gray-700">
-              <dl>
-                <div>
-                  <dt className="sr-only">Published on</dt>
-                  <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
-                    <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
-                  </dd>
-                </div>
-              </dl>
-              <div>
-                <PageTitle>{title}</PageTitle>
-              </div>
-            </div>
-          </header>
-          <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 xl:divide-y-0 dark:divide-gray-700">
-            <div className="divide-y divide-gray-200 xl:col-span-3 xl:row-span-2 xl:pb-0 dark:divide-gray-700">
-              <div className="prose dark:prose-invert max-w-none pt-10 pb-8">{children}</div>
-            </div>
-            {siteMetadata.comments && (
-              <div className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300" id="comment">
-                <Comments slug={slug} />
-              </div>
-            )}
-            <footer>
-              <div className="flex flex-col text-sm font-medium sm:flex-row sm:justify-between sm:text-base">
-                {prev && prev.path && (
-                  <div className="pt-4 xl:pt-8">
-                    <Link
-                      href={`/${prev.path}`}
-                      className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                      aria-label={`Previous post: ${prev.title}`}
-                    >
-                      &larr; {prev.title}
-                    </Link>
-                  </div>
-                )}
-                {next && next.path && (
-                  <div className="pt-4 xl:pt-8">
-                    <Link
-                      href={`/${next.path}`}
-                      className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                      aria-label={`Next post: ${next.title}`}
-                    >
-                      {next.title} &rarr;
-                    </Link>
-                  </div>
-                )}
-              </div>
-            </footer>
+        <header className="border-divider dark:border-dark-divider border-b pt-10 pb-8">
+          <div className="text-muted dark:text-dark-muted text-[13px]">
+            <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
           </div>
+          <div className="mt-3">
+            <PageTitle>{title}</PageTitle>
+          </div>
+        </header>
+        <div className="prose dark:prose-invert max-w-none pt-8 pb-8 [&>*]:max-w-[65ch]">
+          {children}
         </div>
+        {siteMetadata.comments && (
+          <div className="border-divider dark:border-dark-divider border-t pt-8 pb-8" id="comment">
+            <Comments slug={slug} />
+          </div>
+        )}
+        <footer className="border-divider dark:border-dark-divider border-t pt-6 pb-8">
+          <div className="flex items-center justify-between text-sm">
+            {prev && prev.path ? (
+              <Link
+                href={`/${prev.path}`}
+                className="text-muted hover:text-charcoal dark:text-dark-muted dark:hover:text-dark-text transition-colors"
+                aria-label={`Previous post: ${prev.title}`}
+              >
+                ← {prev.title}
+              </Link>
+            ) : (
+              <span />
+            )}
+            {next && next.path ? (
+              <Link
+                href={`/${next.path}`}
+                className="text-muted hover:text-charcoal dark:text-dark-muted dark:hover:text-dark-text transition-colors"
+                aria-label={`Next post: ${next.title}`}
+              >
+                {next.title} →
+              </Link>
+            ) : (
+              <span />
+            )}
+          </div>
+        </footer>
       </article>
     </SectionContainer>
   )

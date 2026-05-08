@@ -26,48 +26,51 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
     <SectionContainer>
       <ScrollTopAndComment />
       <article>
-        <div>
-          <div className="space-y-1 pb-10 text-center dark:border-gray-700">
-            <div className="w-full">
-              <Bleed>
-                <div className="relative aspect-2/1 w-full">
-                  <Image src={displayImage} alt={title} fill className="object-cover" />
-                </div>
-              </Bleed>
-            </div>
-            <div className="relative pt-10">
-              <PageTitle>{title}</PageTitle>
-            </div>
+        <div className="pt-8">
+          <div className="w-full overflow-hidden rounded">
+            <Bleed>
+              <div className="relative aspect-2/1 w-full">
+                <Image src={displayImage} alt={title} fill className="object-cover" />
+              </div>
+            </Bleed>
           </div>
-          <div className="prose dark:prose-invert max-w-none py-4">{children}</div>
+          <div className="mt-8">
+            <PageTitle>{title}</PageTitle>
+          </div>
+          <div className="prose dark:prose-invert mt-8 max-w-none [&>*]:max-w-[65ch]">
+            {children}
+          </div>
           {siteMetadata.comments && (
-            <div className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300" id="comment">
+            <div
+              className="border-divider dark:border-dark-divider border-t pt-8 pb-8"
+              id="comment"
+            >
               <Comments slug={slug} />
             </div>
           )}
-          <footer>
-            <div className="flex flex-col text-sm font-medium sm:flex-row sm:justify-between sm:text-base">
-              {prev && prev.path && (
-                <div className="pt-4 xl:pt-8">
-                  <Link
-                    href={`/${prev.path}`}
-                    className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                    aria-label={`Previous post: ${prev.title}`}
-                  >
-                    &larr; {prev.title}
-                  </Link>
-                </div>
+          <footer className="border-divider dark:border-dark-divider border-t pt-6 pb-8">
+            <div className="flex items-center justify-between text-sm">
+              {prev && prev.path ? (
+                <Link
+                  href={`/${prev.path}`}
+                  className="text-muted hover:text-charcoal dark:text-dark-muted dark:hover:text-dark-text transition-colors"
+                  aria-label={`Previous post: ${prev.title}`}
+                >
+                  ← {prev.title}
+                </Link>
+              ) : (
+                <span />
               )}
-              {next && next.path && (
-                <div className="pt-4 xl:pt-8">
-                  <Link
-                    href={`/${next.path}`}
-                    className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                    aria-label={`Next post: ${next.title}`}
-                  >
-                    {next.title} &rarr;
-                  </Link>
-                </div>
+              {next && next.path ? (
+                <Link
+                  href={`/${next.path}`}
+                  className="text-muted hover:text-charcoal dark:text-dark-muted dark:hover:text-dark-text transition-colors"
+                  aria-label={`Next post: ${next.title}`}
+                >
+                  {next.title} →
+                </Link>
+              ) : (
+                <span />
               )}
             </div>
           </footer>

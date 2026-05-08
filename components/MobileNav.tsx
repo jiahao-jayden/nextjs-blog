@@ -1,7 +1,6 @@
 'use client'
 
 import { Dialog, DialogPanel, Transition, TransitionChild } from '@headlessui/react'
-import { clearAllBodyScrollLocks, disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 import { Fragment, useEffect, useRef, useState } from 'react'
 import headerNavLinks from '@/data/headerNavLinks'
 import Link from './Link'
@@ -10,27 +9,19 @@ const MobileNav = () => {
   const [navShow, setNavShow] = useState(false)
   const navRef = useRef<HTMLElement | null>(null)
 
-  const openNav = () => {
-    if (navRef.current) {
-      disableBodyScroll(navRef.current)
-    }
-
-    setNavShow(true)
-  }
-
-  const closeNav = () => {
-    if (navRef.current) {
-      enableBodyScroll(navRef.current)
-    }
-
-    setNavShow(false)
-  }
+  const openNav = () => setNavShow(true)
+  const closeNav = () => setNavShow(false)
 
   useEffect(() => {
-    return () => {
-      clearAllBodyScrollLocks()
+    if (navShow) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
     }
-  }, [])
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [navShow])
 
   return (
     <>
@@ -38,15 +29,13 @@ const MobileNav = () => {
         <svg
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          className="hover:text-primary-500 dark:hover:text-primary-400 h-8 w-8 text-gray-900 dark:text-gray-100"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          className="text-charcoal dark:text-dark-text h-6 w-6"
         >
-          <path
-            fillRule="evenodd"
-            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-            clipRule="evenodd"
-          />
+          <path strokeLinecap="round" d="M4 7h16M4 12h16M4 17h16" />
         </svg>
       </button>
       <Transition appear show={navShow} as={Fragment}>
@@ -60,54 +49,50 @@ const MobileNav = () => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 z-60 bg-black/25" />
+            <div className="bg-charcoal/20 fixed inset-0 z-60 dark:bg-black/40" />
           </TransitionChild>
 
           <TransitionChild
             as={Fragment}
-            enter="transition ease-in-out duration-300 transform"
-            enterFrom="translate-x-full opacity-0"
-            enterTo="translate-x-0 opacity-95"
+            enter="transition ease-out duration-300 transform"
+            enterFrom="translate-x-full"
+            enterTo="translate-x-0"
             leave="transition ease-in duration-200 transform"
-            leaveFrom="translate-x-0 opacity-95"
-            leaveTo="translate-x-full opacity-0"
+            leaveFrom="translate-x-0"
+            leaveTo="translate-x-full"
           >
-            <DialogPanel className="fixed top-0 left-0 z-70 h-full w-full bg-white/95 duration-300 dark:bg-gray-950/98">
-              <nav
-                ref={navRef}
-                className="mt-8 flex h-full basis-0 flex-col items-start overflow-y-auto pt-2 pl-12 text-left"
+            <DialogPanel className="bg-vellum dark:bg-dark-surface fixed top-0 right-0 z-70 h-full w-3/4 max-w-sm shadow-lg">
+              <button
+                type="button"
+                className="text-charcoal dark:text-dark-text absolute top-6 right-6 p-2"
+                aria-label="Close Menu"
+                onClick={closeNav}
               >
+                <svg
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  className="h-6 w-6"
+                >
+                  <path strokeLinecap="round" d="M6 6l12 12M6 18L18 6" />
+                </svg>
+              </button>
+
+              <nav ref={navRef} className="flex h-full flex-col justify-center gap-8 px-12">
                 {headerNavLinks.map((link) => (
                   <Link
                     key={link.title}
                     href={link.href}
-                    className="hover:text-primary-500 dark:hover:text-primary-400 mb-4 py-2 pr-4 text-2xl font-bold tracking-widest text-gray-900 outline-0 dark:text-gray-100"
+                    className="text-charcoal dark:text-dark-text font-serif text-2xl transition-opacity hover:opacity-70"
                     onClick={closeNav}
                   >
                     {link.title}
                   </Link>
                 ))}
               </nav>
-
-              <button
-                type="button"
-                className="hover:text-primary-500 dark:hover:text-primary-400 fixed top-7 right-4 z-80 h-16 w-16 p-4 text-gray-900 dark:text-gray-100"
-                aria-label="Toggle Menu"
-                onClick={closeNav}
-              >
-                <svg
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
             </DialogPanel>
           </TransitionChild>
         </Dialog>

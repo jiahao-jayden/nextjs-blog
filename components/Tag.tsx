@@ -1,16 +1,18 @@
 import Link from 'next/link'
 import { slug } from 'github-slugger'
+
 interface Props {
   text: string
+  className?: string
 }
 
-const Tag = ({ text }: Props) => {
+const Tag = ({ text, className = '' }: Props) => {
   return (
     <Link
       href={`/tags/${slug(text)}`}
-      className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase"
+      className={`text-muted hover:text-charcoal dark:text-dark-muted dark:hover:text-dark-text text-[13px] transition-colors ${className}`}
     >
-      {text.split(' ').join('-')}
+      {text}
     </Link>
   )
 }
