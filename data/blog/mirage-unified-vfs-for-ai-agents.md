@@ -39,6 +39,12 @@ result = await ws.execute('grep -r "release" /slack/eng')
 
 就这样。agent 写 `grep -r "release" /slack/eng`，Mirage 在底层把这条命令解析、路由到 Slack 的 handler，拿回结果。对 agent 来说，Slack 就是一个能 `grep` 的目录。
 
+整体架构长这样：
+
+![Mirage 架构图](/static/images/mirage-architecture.jpg)
+
+从上到下四层：最上面是 agent 或应用发出 bash 命令 / VFS 调用；第二层是 Mirage 自己的 bash 解析器和 VFS 注册表（加了个 FUSE adapter 做系统级挂载）；第三层是 dispatcher + 缓存；最底下是实际的后端，分本地存储（RAM、Disk、OPFS、Redis）和远程服务（S3、Slack、GitHub、Notion 等）。
+
 ## 真正有意思的实现细节
 
 如果只看 landing page，很容易把 Mirage 理解成"多数据源的挂载工具"。但文档里有两个细节值得多看一眼。
