@@ -110,10 +110,16 @@
     }
     & :where(code):not(pre code) {
       color: var(--color-book);
-      background: var(--color-gray-100);
+      background: oklch(0.96 0.005 80);
       padding: 2px 6px;
       border-radius: 3px;
       font-size: 0.875em;
+    }
+    & pre {
+      background: #f5f2ec;
+      border: none;
+      border-radius: 4px;
+      color: #3d3d3d;
     }
     & blockquote {
       border-left-color: var(--color-divider);
@@ -121,30 +127,65 @@
     }
   }
 
-  .prose-invert {
-    --tw-prose-body: var(--color-dark-text);
-    --tw-prose-headings: var(--color-dark-text);
-    --tw-prose-links: var(--color-dark-text);
+  .dark .prose {
+    --tw-prose-body: #e8e6e3;
+    --tw-prose-headings: #f5f5f4;
+    --tw-prose-links: #f5f5f4;
+    --tw-prose-bold: #f5f5f4;
+    --tw-prose-bullets: #666666;
+    --tw-prose-counters: #666666;
+    --tw-prose-hr: #2a2a2a;
+    --tw-prose-quotes: #aaaaaa;
+    --tw-prose-captions: #999999;
+    --tw-prose-th-borders: #2a2a2a;
+    --tw-prose-td-borders: #222222;
+    color: #e8e6e3;
 
+    & p,
+    & li,
+    & ol,
+    & ul,
+    & dl,
+    & dd,
+    & dt,
+    & td,
+    & th,
+    & figcaption {
+      color: #e8e6e3;
+    }
     & a {
-      color: var(--color-dark-text);
+      color: #f5f5f4;
       &:hover {
         color: var(--color-dark-gold);
       }
       & code {
-        color: var(--color-dark-text);
+        color: #f5f5f4;
       }
     }
     & :where(h1, h2, h3, h4, h5, h6) {
-      color: var(--color-dark-text);
+      color: #f5f5f4;
+    }
+    & strong {
+      color: #f5f5f4;
     }
     & :where(code):not(pre code) {
-      color: var(--color-dark-text);
-      background: var(--color-dark-elevated);
+      color: #e8e6e3;
+      background: #2a2a2a;
+    }
+    & pre {
+      background: #1f1f1f;
+      border: none;
+      color: #d4d4d4;
     }
     & blockquote {
-      border-left-color: var(--color-dark-divider);
-      color: var(--color-dark-muted);
+      border-left-color: #333333;
+      color: #aaaaaa;
+    }
+    & li::marker {
+      color: #666666;
+    }
+    & hr {
+      border-color: #2a2a2a;
     }
   }
 }
@@ -208,4 +249,36 @@ input:-webkit-autofill:focus {
 .linkicon {
   display: inline-block;
   vertical-align: middle;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-in 0.5s ease both;
+}
+
+.animate-delay-1 {
+  animation-delay: 100ms;
+}
+
+.animate-delay-2 {
+  animation-delay: 200ms;
+}
+
+.animate-delay-3 {
+  animation-delay: 320ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up {
+    animation: none;
+    opacity: 1;
+  }
 }

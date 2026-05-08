@@ -33,7 +33,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
       <ScrollTopAndComment />
       <article>
         <header className="pt-10 pb-8">
-          <div className="text-muted dark:text-dark-muted flex items-center gap-2 text-[13px]">
+          <div className="animate-fade-up text-muted dark:text-dark-muted flex items-center gap-2 text-[13px]">
             <time dateTime={date}>
               {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
             </time>
@@ -51,11 +51,11 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               </>
             )}
           </div>
-          <h1 className="text-charcoal dark:text-dark-text mt-3 font-serif text-[clamp(2rem,5vw,3rem)] leading-[1.15] font-normal tracking-tight">
+          <h1 className="animate-fade-up animate-delay-1 text-charcoal dark:text-dark-text mt-3 font-serif text-[clamp(2rem,5vw,3rem)] leading-[1.15] font-normal tracking-tight">
             {title}
           </h1>
           {authorDetails.length > 0 && (
-            <div className="mt-4 flex items-center gap-3">
+            <div className="animate-fade-up animate-delay-2 mt-4 flex items-center gap-3">
               {authorDetails.map((author) => (
                 <div key={author.name} className="flex items-center gap-2">
                   {author.avatar && (
@@ -74,7 +74,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
           )}
         </header>
 
-        <div className="border-divider dark:border-dark-divider border-t">
+        <div className="animate-fade-up animate-delay-3 border-divider dark:border-dark-divider border-t">
           <div className="prose dark:prose-invert max-w-none pt-8 pb-8 [&>*]:max-w-[65ch]">
             {children}
           </div>

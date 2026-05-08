@@ -24,14 +24,14 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
       <ScrollTopAndComment />
       <article>
         <header className="border-divider dark:border-dark-divider border-b pt-10 pb-8">
-          <div className="text-muted dark:text-dark-muted text-[13px]">
+          <div className="animate-fade-up text-muted dark:text-dark-muted text-[13px]">
             <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
           </div>
-          <div className="mt-3">
+          <div className="animate-fade-up animate-delay-1 mt-3">
             <PageTitle>{title}</PageTitle>
           </div>
         </header>
-        <div className="prose dark:prose-invert max-w-none pt-8 pb-8 [&>*]:max-w-[65ch]">
+        <div className="animate-fade-up animate-delay-2 prose dark:prose-invert max-w-none pt-8 pb-8 [&>*]:max-w-[65ch]">
           {children}
         </div>
         {siteMetadata.comments && (

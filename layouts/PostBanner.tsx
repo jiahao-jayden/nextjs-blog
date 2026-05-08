@@ -27,17 +27,17 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
       <ScrollTopAndComment />
       <article>
         <div className="pt-8">
-          <div className="w-full overflow-hidden rounded">
+          <div className="animate-fade-up w-full overflow-hidden rounded">
             <Bleed>
               <div className="relative aspect-2/1 w-full">
                 <Image src={displayImage} alt={title} fill className="object-cover" />
               </div>
             </Bleed>
           </div>
-          <div className="mt-8">
+          <div className="animate-fade-up animate-delay-1 mt-8">
             <PageTitle>{title}</PageTitle>
           </div>
-          <div className="prose dark:prose-invert mt-8 max-w-none [&>*]:max-w-[65ch]">
+          <div className="animate-fade-up animate-delay-2 prose dark:prose-invert mt-8 max-w-none [&>*]:max-w-[65ch]">
             {children}
           </div>
           {siteMetadata.comments && (
