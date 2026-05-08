@@ -1,14 +1,14 @@
 {
-  "name": "",
-  "short_name": "",
+  "name": "Jayden's Blog",
+  "short_name": "Jayden",
   "icons": [
     {
-      "src": "/android-chrome-96x96.png",
+      "src": "/static/favicons/android-chrome-96x96.png",
       "sizes": "96x96",
       "type": "image/png"
     }
   ],
-  "theme_color": "#000000",
-  "background_color": "#000000",
+  "theme_color": "#f7f4ed",
+  "background_color": "#f7f4ed",
   "display": "standalone"
 }
