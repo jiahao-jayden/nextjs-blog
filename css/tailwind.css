@@ -48,6 +48,15 @@
 }
 
 @layer base {
+  html {
+    scrollbar-gutter: stable;
+    overflow-x: clip;
+  }
+
+  body {
+    overflow-x: clip;
+  }
+
   *,
   ::after,
   ::before,
@@ -236,14 +245,21 @@ input:-webkit-autofill:focus {
 }
 
 .content-header-link {
-  opacity: 0;
-  margin-left: -24px;
-  padding-right: 4px;
+  display: none;
 }
 
-.content-header:hover .content-header-link,
-.content-header-link:hover {
-  opacity: 1;
+@media (min-width: 640px) {
+  .content-header-link {
+    display: inline-block;
+    opacity: 0;
+    margin-left: -24px;
+    padding-right: 4px;
+  }
+
+  .content-header:hover .content-header-link,
+  .content-header-link:hover {
+    opacity: 1;
+  }
 }
 
 .linkicon {

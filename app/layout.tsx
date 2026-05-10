@@ -103,7 +103,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f4ed" />
       <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a1a1a" />
       <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
-      <body className="bg-vellum text-inkwell dark:bg-dark-surface dark:text-dark-text sm:pl-[calc(100vw-100%)] font-sans antialiased">
+      <body className="bg-vellum text-inkwell dark:bg-dark-surface dark:text-dark-text font-sans antialiased">
         <ThemeProviders>
           <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
           <SectionContainer>
