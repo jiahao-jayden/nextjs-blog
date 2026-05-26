@@ -19,7 +19,7 @@
 
 /* Code block styles */
 .code-highlight {
-  @apply float-left min-w-full;
+  @apply block min-w-full;
 }
 
 .code-line {
@@ -61,6 +61,30 @@
 
 .dark .line-number::before {
   color: #555;
+}
+
+@media (max-width: 639px) {
+  .code-highlight {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .code-line {
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: 0;
+    padding-left: 0;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .highlight-line {
+    margin-right: 0;
+    margin-left: 0;
+    padding-left: 0;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
 }
 
 /* Token styles — near-monochrome, barely tinted */

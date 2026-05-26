@@ -5,7 +5,6 @@ import type { Blog } from 'contentlayer/generated'
 import Comments from '@/components/Comments'
 import Link from '@/components/Link'
 import PageTitle from '@/components/PageTitle'
-import SectionContainer from '@/components/SectionContainer'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 
@@ -20,7 +19,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
   const { path, slug, date, title } = content
 
   return (
-    <SectionContainer>
+    <>
       <ScrollTopAndComment />
       <article>
         <header className="border-divider dark:border-dark-divider border-b pt-10 pb-8">
@@ -31,7 +30,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
             <PageTitle>{title}</PageTitle>
           </div>
         </header>
-        <div className="animate-fade-up animate-delay-2 prose dark:prose-invert max-w-none pt-8 pb-8 [&>*]:max-w-[65ch]">
+        <div className="article-prose animate-fade-up animate-delay-2 prose dark:prose-invert max-w-none pt-8 pb-8">
           {children}
         </div>
         {siteMetadata.comments && (
@@ -66,6 +65,6 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
           </div>
         </footer>
       </article>
-    </SectionContainer>
+    </>
   )
 }

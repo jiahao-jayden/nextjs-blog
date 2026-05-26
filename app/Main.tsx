@@ -1,4 +1,4 @@
-import NewsletterForm from "pliny/ui/NewsletterForm";
+import NewsletterForm from "@/components/NewsletterForm";
 import { formatDate } from "pliny/utils/formatDate";
 import Link from "@/components/Link";
 import Tag from "@/components/Tag";
