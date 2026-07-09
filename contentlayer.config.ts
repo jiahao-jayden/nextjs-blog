@@ -9,9 +9,9 @@ import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import { remarkAlert } from 'remark-github-blockquote-alert'
+import { visit } from 'unist-util-visit'
 import {
   remarkExtractFrontmatter,
-  remarkCodeTitles,
   remarkImgToJsx,
   extractTocHeadings,
 } from 'pliny/mdx-plugins/index.js'
@@ -29,6 +29,55 @@ import prettier from 'prettier'
 
 const root = process.cwd()
 const isProduction = process.env.NODE_ENV === 'production'
+const codeFenceTitleRegex = /(?:^|\s)title=(?:"([^"]+)"|'([^']+)'|(\S+))/
+
+function splitCodeFenceLanguage(lang: string) {
+  const separatorIndex = lang.indexOf(':')
+
+  if (separatorIndex === -1) {
+    return { language: lang, title: '' }
+  }
+
+  return {
+    language: lang.slice(0, separatorIndex),
+    title: lang.slice(separatorIndex + 1),
+  }
+}
+
+function getCodeFenceTitle(meta?: string | null) {
+  const match = (meta || '').match(codeFenceTitleRegex)
+  return match ? match[1] || match[2] || match[3] || '' : ''
+}
+
+function stripCodeFenceTitle(meta?: string | null) {
+  return (meta || '').replace(codeFenceTitleRegex, '').trim()
+}
+
+function remarkCodeBlockTitles() {
+  return (tree) => {
+    visit(tree, 'code', (node, index, parent) => {
+      if (!parent || typeof index !== 'number') return
+
+      const { language, title: langTitle } = splitCodeFenceLanguage(node.lang || '')
+      const metaTitle = getCodeFenceTitle(node.meta)
+      const title = metaTitle || langTitle
+
+      if (!title) return
+
+      const titleNode = {
+        type: 'mdxJsxFlowElement',
+        name: 'div',
+        attributes: [{ type: 'mdxJsxAttribute', name: 'className', value: 'remark-code-title' }],
+        children: [{ type: 'text', value: title }],
+        data: { _xdmExplicitJsx: true },
+      }
+
+      parent.children.splice(index, 0, titleNode)
+      node.lang = language
+      node.meta = stripCodeFenceTitle(node.meta) || null
+    })
+  }
+}
 
 // heroicon mini link
 const icon = fromHtmlIsomorphic(
@@ -156,7 +205,7 @@ export default makeSource({
     remarkPlugins: [
       remarkExtractFrontmatter,
       remarkGfm,
-      remarkCodeTitles,
+      remarkCodeBlockTitles,
       remarkMath,
       remarkImgToJsx,
       remarkAlert,
