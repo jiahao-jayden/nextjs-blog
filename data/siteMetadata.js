@@ -7,7 +7,7 @@ const siteMetadata = {
 		"A quiet notebook on code, design, and the small pleasures of making things well.",
 	language: "en-us",
 	theme: "system", // system, dark or light
-	siteUrl: "https://tailwind-nextjs-starter-blog.vercel.app",
+	siteUrl: "https://jayden0.com",
 	siteRepo: "https://github.com/timlrx/tailwind-nextjs-starter-blog",
 	siteLogo: `${process.env.BASE_PATH || ""}/static/images/logo.png`,
 	socialBanner: `${process.env.BASE_PATH || ""}/static/images/twitter-card.png`,
