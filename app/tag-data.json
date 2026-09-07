@@ -1,6 +1,6 @@
 {
-  "ai": 6,
-  "agent": 6,
-  "infra": 1,
+  "ai": 3,
+  "agent": 3,
+  "infra": 2,
   "prompt-engineering": 1
 }

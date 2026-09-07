@@ -200,3 +200,4 @@ Procfile          text
 
 # Ignore files (like .npmignore or .gitignore)
 *.*ignore         text
+.wehub/tasks/**/log.md merge=union
