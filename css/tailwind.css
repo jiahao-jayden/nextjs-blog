@@ -258,6 +258,63 @@
   display: none;
 }
 
+.mermaid-preview-dialog {
+  width: 100vw;
+  max-width: none;
+  height: 100vh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  background: transparent;
+}
+
+.mermaid-preview-dialog::backdrop {
+  background: rgb(25 25 25 / 0.72);
+}
+
+.mermaid-preview-stage {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: clamp(1rem, 4vw, 3rem);
+  user-select: none;
+}
+
+.mermaid-preview-canvas {
+  display: inline-flex;
+  max-width: 100%;
+  transform-origin: center center;
+  transition: transform 180ms ease-out;
+  will-change: transform;
+}
+
+.mermaid-preview-svg {
+  display: inline-flex;
+  max-width: calc(100vw - 2rem);
+  max-height: calc(100vh - 8rem);
+  align-items: center;
+  justify-content: center;
+}
+
+.mermaid-preview-svg svg {
+  display: block;
+  width: auto !important;
+  max-width: none !important;
+  height: auto !important;
+  max-height: calc(100vh - 8rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mermaid-preview-canvas {
+    transition: none;
+  }
+}
+
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
