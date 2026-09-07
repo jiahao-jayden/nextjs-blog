@@ -7,7 +7,11 @@ const ThemeSwitch = () => {
   const [mounted, setMounted] = useState(false)
   const { resolvedTheme, setTheme } = useTheme()
 
-  useEffect(() => setMounted(true), [])
+  // The theme is only available after hydration.
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true)
+  }, [])
 
   if (!mounted) {
     return <div className="h-5 w-5" />
