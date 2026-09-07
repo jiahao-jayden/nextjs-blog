@@ -1,6 +1,8 @@
 import { ReactNode } from 'react'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog, Authors } from 'contentlayer/generated'
+import type { Toc } from 'pliny/mdx-plugins/remark-toc-headings'
+import TOCInline from 'pliny/ui/TOCInline'
 import Comments from '@/components/Comments'
 import Link from '@/components/Link'
 import PageTitle from '@/components/PageTitle'
@@ -20,17 +22,36 @@ interface LayoutProps {
   authorDetails: CoreContent<Authors>[]
   next?: { path: string; title: string }
   prev?: { path: string; title: string }
+  toc: Toc
   children: ReactNode
 }
 
-export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
+export default function PostLayout({ content, authorDetails, next, prev, toc, children }: LayoutProps) {
   const { filePath, path, slug, date, title, tags } = content
   const basePath = path.split('/')[0]
+  const tocItems = toc.filter((heading) => heading.depth >= 2 && heading.depth <= 3)
 
   return (
     <>
       <ScrollTopAndComment />
-      <article>
+      <article className="relative">
+        {tocItems.length > 1 && (
+          <aside className="absolute top-10 left-full ml-12 hidden w-44 xl:block">
+            <nav
+              aria-label="Table of contents"
+              className="border-divider dark:border-dark-divider sticky top-24 border-l pl-4"
+            >
+              <p className="text-muted dark:text-dark-muted mb-3 text-xs font-medium">On this page</p>
+              <TOCInline
+                toc={tocItems}
+                fromHeading={2}
+                toHeading={3}
+                ulClassName="space-y-2 text-xs leading-5 [&_ul]:mt-2 [&_ul]:space-y-2 [&_ul]:pl-3"
+                liClassName="text-muted dark:text-dark-muted hover:text-charcoal dark:hover:text-dark-text transition-colors"
+              />
+            </nav>
+          </aside>
+        )}
         <header className="pt-10 pb-8">
           <div className="animate-fade-up text-muted dark:text-dark-muted flex items-center gap-2 text-[13px]">
             <time dateTime={date}>

@@ -45,4 +45,5 @@ yarn-error.log*
 
 # Contentlayer
 .contentlayer
+next-env.d.ts
 .wehub/config.local

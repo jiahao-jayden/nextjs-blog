@@ -4,6 +4,7 @@ import 'katex/dist/katex.css'
 import PageTitle from '@/components/PageTitle'
 import { components } from '@/components/MDXComponents'
 import { MDXLayoutRenderer } from 'pliny/mdx-components'
+import type { Toc } from 'pliny/mdx-plugins/remark-toc-headings'
 import { sortPosts, coreContent, allCoreContent } from 'pliny/utils/contentlayer'
 import { allBlogs, allAuthors } from 'contentlayer/generated'
 import type { Authors, Blog } from 'contentlayer/generated'
@@ -105,6 +106,7 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
   })
 
   const Layout = layouts[post.layout || defaultLayout]
+  const body = <MDXLayoutRenderer code={post.body.code} components={components} toc={post.toc} />
 
   return (
     <>
@@ -112,9 +114,21 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Layout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
-        <MDXLayoutRenderer code={post.body.code} components={components} toc={post.toc} />
-      </Layout>
+      {post.layout === defaultLayout || !post.layout ? (
+        <PostLayout
+          content={mainContent}
+          authorDetails={authorDetails}
+          next={next}
+          prev={prev}
+          toc={post.toc as Toc}
+        >
+          {body}
+        </PostLayout>
+      ) : (
+        <Layout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
+          {body}
+        </Layout>
+      )}
     </>
   )
 }
