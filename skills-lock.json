@@ -6,6 +6,13 @@
       "sourceType": "github",
       "skillPath": "skill/SKILL.md",
       "computedHash": "8cdf2e788eaca3af7d02026ef9cec55b506100a00d130f938e3fb1ad669c0ad0"
+    },
+    "x-article-publisher": {
+      "source": "wshuyi/x-article-publisher-skill",
+      "ref": "main",
+      "sourceType": "github",
+      "skillPath": "skills/x-article-publisher/SKILL.md",
+      "computedHash": "f011fe3f44b44cd412fb8463dc4632942d550ab7dae4562804c822e248464817"
     }
   }
 }
