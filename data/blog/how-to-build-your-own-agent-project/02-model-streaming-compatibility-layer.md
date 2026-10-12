@@ -5,7 +5,7 @@ tags:
   - ai
   - agent
   - infra
-draft: true
+draft: false
 summary: '从 OpenAI Chat、Responses 与 Anthropic Messages 三种协议出发，拆解流式事件归一化、兼容性适配、KV Cache 断点与工具调用协议防御。'
 images:
   - /static/images/model-streaming-compatibility-cover.webp
