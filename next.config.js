@@ -87,6 +87,20 @@ module.exports = () => {
       ],
       unoptimized,
     },
+    async redirects() {
+      return [
+        {
+          source: '/blog/how-to-build-your-own-agent-project/01-system-prompt-art/',
+          destination: '/blog/how-to-build-your-own-agent-project/system-prompt-art/',
+          permanent: true,
+        },
+        {
+          source: '/blog/how-to-build-your-own-agent-project/02-model-streaming-compatibility-layer/',
+          destination: '/blog/how-to-build-your-own-agent-project/model-streaming-compatibility-layer/',
+          permanent: true,
+        },
+      ]
+    },
     async headers() {
       return [
         {
