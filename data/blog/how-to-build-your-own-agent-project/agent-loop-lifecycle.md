@@ -421,4 +421,4 @@ function raceAbort<T>(work: Promise<T>, signal: AbortSignal | undefined): Promis
 
 上一篇：[第 0 章：模型流式接入与兼容层设计](/blog/how-to-build-your-own-agent-project/model-streaming-compatibility-layer/)
 
-下一章：上下文管理、KV Cache 断点与 Compaction（待发布）。
+下一篇：[第 2 章：上下文管理、KV Cache 断点与 Compaction](/blog/how-to-build-your-own-agent-project/context-management-compaction/)
