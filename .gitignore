@@ -47,3 +47,6 @@ yarn-error.log*
 .contentlayer
 next-env.d.ts
 .wehub/config.local
+
+# typescript incremental build cache
+tsconfig.tsbuildinfo

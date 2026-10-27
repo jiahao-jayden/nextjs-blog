@@ -1,0 +1,15 @@
+flowchart TD
+  S1["1. Operation Journal: 写入 model_attempted (预分配 id = e2)"]
+  W1(["⚡ 窗口 1 崩溃 (有 model_attempted，Session 无 e2)<br/>──► 裁决: provider_interrupted (模型流中断，无工具副作用)"])
+  S2["2. Session Journal: 模型回复完成，写入 AssistantMessage (id = e2, 含 toolCall)"]
+  W2(["⚡ 窗口 2 崩溃 (Session 已有 e2，但 Operation 尚无 T1)<br/>──► 裁决: ready (正在校验参数或等用户审批，工具 100% 未执行，重启直接续跑)"])
+  S3["3. [T1 边界] Operation Journal: 写入 tool_dispatched (预分配 id = e3)"]
+  S4["4. 外部工具: 调用 tool.execute() 产生外部副作用 (扣 10 点券 / 改文件)"]
+  W3(["⚡ 窗口 3 崩溃 (Operation 已有 T1，但 Session 无 e3)<br/>──► 裁决: indeterminate_tool (工具已执行但结局未知，严禁自动重跑)"])
+  S5["5. [T2 边界] Session Journal: 写入 ToolResultMessage (id = e3)"]
+  S6["6. Operation Journal: 写入 operation_finished (outcome = completed)"]
+
+  S1 --> S2 --> S3 --> S4 --> S5 --> S6
+  S1 -. "若在此处崩溃" .-> W1
+  S2 -. "若在此处崩溃" .-> W2
+  S4 -. "若在此处崩溃" .-> W3

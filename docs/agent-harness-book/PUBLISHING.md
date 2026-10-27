@@ -39,13 +39,18 @@
 - 生产站点通过推送 `main` 触发 Vercel 自动部署；本轮发布状态以 Git 提交和部署记录为准。
 
 
+### 第 2 章封面补充
+
+用户要求延续系列封面风格。使用内置 image_gen，以上一期建筑封面为风格参考，生成古典拱顶藏书室与摘要册：暖象牙羊皮纸、橄榄黑蚀刻、少量金线、左侧大标题与细边框。原图 `assets/context-management-compaction/00-cover-library.png`，网页图 `public/static/images/context-management-compaction/00-cover-library.webp`，提示词见同资产目录 `cover-library.json`。已接入文章元数据和正文，等待用户审阅；本次封面改动未提交或推送。不要再次自行打开用户浏览器。
+
+
 ## 2026-10-27：第 3、4 章发布
 
 - 类型：文章发布。
 - 摘要：从 `/Users/jayden/code/jai-mono/docs/book/3.md`、`4.md` 导入工具安全执行与会话持久化两篇原稿；博客路径分别为 `tool-safety-permissions`、`session-persistence-recovery`，发布日期 2026-10-27，均非草稿。
 - 决策与放弃：正文完整保留，仅移除重复一级标题，添加元数据、摘要和章节导航；源文件以同名 `.source.md` 保存。补齐第 2→3→4 章链接。首页改版、第 2 章待审封面等既有改动不随本次发布。
 - 验证：在仅包含已提交代码与本次文章变更的独立目录运行 `yarn build` 通过（TypeScript、31 个静态页面、RSS）；原稿与快照逐字节一致，正文完整一致，站内文章链接、编译后元数据、目录、静态 HTML、搜索索引及 sitemap 检查通过。首次软链接依赖造成 TS2742，复制依赖后通过，未修改产品代码。按既有偏好未打开浏览器。
-- 遗留与下一步：提交并推送后核验生产部署与两个正式地址；第 5 章 Extension 尚未发布。既有封面及首页变更继续留在本地。
+- 遗留与下一步：提交 `1036ddc` 已推送至 `origin/main`，Vercel 状态为 success，两个正式地址均 HTTP 200，线上标题和章节导航核验通过。第 5 章 Extension 尚未发布；下一次先确认待审封面和首页变更的发布范围。既有封面及首页变更继续留在本地。
 - review 重点：`data/blog/how-to-build-your-own-agent-project/tool-safety-permissions.md:1`、`data/blog/how-to-build-your-own-agent-project/session-persistence-recovery.md:1`；本轮是原稿发布，未进行外部技术事实复核。
 
 
@@ -55,5 +60,5 @@
 - 摘要：内置 image_gen 生成两张 1983×793 封面；第 3 章为古典拱门与权限闸门，第 4 章按用户要求融合猪猪侠飞行动作与西方古典档案长廊、树形日志及分支金线。
 - 决策与放弃：延续暖象牙羊皮纸、橄榄黑铜版蚀刻、克制金线、双线细边框、左侧衬线大标题；猪猪侠红衣用古典手工上色处理。参考 Agent Loop、Context Compaction 实图及用户提供的猪猪侠截图。原图、参考图和完整提示词保存于 `assets/tool-safety-permissions/`、`assets/session-persistence-recovery/`；网页 WebP 位于对应 `public/static/images/` 目录，接入正文、Open Graph 和 Twitter 分享图。
 - 验证：逐图目视检查文字、构图及系列风格；WebP 编码后尺寸一致，约 502KB / 510KB；独立目录 `yarn build` 通过；解析静态 HTML 确认正文图片及两种分享元数据引用正确；`git diff --check` 通过。
-- 遗留与下一步：推送后检查正式文章及封面资源；仍保留既有首页改版和第 2 章待审封面。
+- 遗留与下一步：提交 `35222dc` 已推送，Vercel 部署成功；两篇文章及两张 WebP 均 HTTP 200，线上 Open Graph/Twitter 引用正确，图片逐字节匹配。仍保留既有首页改版和第 2 章待审封面；下次先确认这些剩余变更的发布安排。
 - review 重点：两篇文章 frontmatter `images` 与正文图片一致；`assets/session-persistence-recovery/cover-prompt.json` 记录猪猪侠与西方艺术融合要求。

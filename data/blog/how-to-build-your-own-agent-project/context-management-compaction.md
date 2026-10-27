@@ -6,10 +6,14 @@ tags:
   - agent
   - infra
 draft: false
+images:
+  - /static/images/context-management-compaction/00-cover-library.webp
 summary: '结合 jai-mono 源码，拆解上下文前缀缓存、Token 用量估算、自动压缩阈值、工具消息配对、只追加的压缩记录，以及上下文超限后的恢复重试。'
 ---
 
 > 自己动手构建 Agent · 第 2 章 · 上一章：[Agent Loop 核心流转与生命周期控制](/blog/how-to-build-your-own-agent-project/agent-loop-lifecycle/)
+
+![上下文管理、KV Cache 断点与压缩：古典藏书室与摘要册主题封面](/static/images/context-management-compaction/00-cover-library.webp)
 
 上一章我们搭好了 `agentLoop` 的多轮调度骨架。只要模型还想调工具，主循环就会一直把 `ToolResultMessage` 追加到 `context.messages` 里，发起下一轮请求。
 
