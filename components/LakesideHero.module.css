@@ -85,10 +85,10 @@
 /* The panda footage is framed 2% tighter than the painting, so its box shrinks around the same centre. */
 .panda {
 	position: absolute;
-	left: calc(903.4 / 1600 * 100%);
-	top: calc(341.4 / 900 * 100%);
-	width: calc(667 / 1600 * 100%);
-	height: calc(375 / 900 * 100%);
+	left: calc(839 / 1600 * 100%);
+	top: calc(209 / 900 * 100%);
+	width: calc(934.5 / 1600 * 100%);
+	height: calc(525.1 / 900 * 100%);
 	mask-size: 100% 100%;
 	pointer-events: none;
 }
