@@ -1,7 +1,12 @@
+'use client'
+
+import { usePathname } from 'next/navigation'
 import Link from './Link'
 import siteMetadata from '@/data/siteMetadata'
 
 export default function Footer() {
+  if (usePathname() === '/') return null
+
   return (
     <footer className="border-divider dark:border-dark-divider mt-16 border-t pt-8 pb-12">
       <div className="text-muted dark:text-dark-muted flex flex-col items-center gap-3 text-sm">

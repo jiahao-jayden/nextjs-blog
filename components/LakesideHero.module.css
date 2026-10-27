@@ -1,0 +1,148 @@
+.hero {
+	--hero-h: 100svh;
+	--stage-w: max(100%, calc(var(--hero-h) * 2046 / 1152));
+	position: relative;
+	width: 100vw;
+	height: var(--hero-h);
+	margin-inline: calc(50% - 50vw);
+	overflow: hidden;
+	background: #4b8fd8;
+}
+
+.stage {
+	position: absolute;
+	bottom: 0;
+	left: calc((100% - var(--stage-w)) * 0.5);
+	width: var(--stage-w);
+	aspect-ratio: 2046 / 1152;
+}
+
+/* The original 1672×941 painting sits at (183, 117) inside the 2046×1152 extended background. */
+.scene {
+	position: absolute;
+	left: calc(183 / 2046 * 100%);
+	top: calc(117 / 1152 * 100%);
+	width: calc(1672 / 2046 * 100%);
+	height: calc(941 / 1152 * 100%);
+}
+
+@media (orientation: portrait) {
+	.stage {
+		left: calc((100% - var(--stage-w)) * 0.8);
+	}
+}
+
+.background {
+	object-fit: cover;
+}
+
+.layer {
+	position: absolute;
+	will-change: transform;
+}
+
+.drift {
+	animation: drift var(--duration) ease-in-out infinite alternate;
+}
+
+.breathe {
+	transform-origin: 50% 100%;
+	animation: breathe var(--duration) ease-in-out infinite alternate;
+}
+
+.tuft {
+	position: absolute;
+}
+
+.tuft::before {
+	content: "";
+	position: absolute;
+	inset: auto 6% -5%;
+	height: 18%;
+	border-radius: 50%;
+	background: radial-gradient(closest-side, rgb(38 66 12 / 0.4), transparent);
+}
+
+.blade {
+	transform-origin: 50% 100%;
+	transform: scaleX(var(--flip));
+	filter: brightness(var(--shade));
+	animation: sway var(--duration) ease-in-out var(--delay) infinite alternate;
+}
+
+/* Video frame covers wide-background px x 0–720, y 400–805, expressed in stage units. */
+.roadVideo {
+	position: absolute;
+	left: calc(-175.1 / 1600 * 100%);
+	top: calc(270.7 / 900 * 100%);
+	width: calc(689 / 1600 * 100%);
+	height: calc(387.4 / 900 * 100%);
+	object-fit: fill;
+	mask-size: 100% 100%;
+	pointer-events: none;
+}
+
+/* The panda footage is framed 2% tighter than the painting, so its box shrinks around the same centre. */
+.panda {
+	position: absolute;
+	left: calc(903.4 / 1600 * 100%);
+	top: calc(341.4 / 900 * 100%);
+	width: calc(667 / 1600 * 100%);
+	height: calc(375 / 900 * 100%);
+	mask-size: 100% 100%;
+	pointer-events: none;
+}
+
+.panda video {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: fill;
+}
+
+.canvas {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+}
+
+@keyframes drift {
+	from {
+		transform: translateX(calc(var(--amp) * -1));
+	}
+	to {
+		transform: translateX(var(--amp));
+	}
+}
+
+@keyframes breathe {
+	from {
+		transform: scaleY(1);
+	}
+	to {
+		transform: scaleY(var(--amp));
+	}
+}
+
+@keyframes sway {
+	from {
+		transform: scaleX(var(--flip)) rotate(calc(var(--amp) * -1));
+	}
+	to {
+		transform: scaleX(var(--flip)) rotate(var(--amp));
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.layer,
+	.blade {
+		animation: none;
+	}
+
+	.roadVideo,
+	.panda video {
+		display: none;
+	}
+}
