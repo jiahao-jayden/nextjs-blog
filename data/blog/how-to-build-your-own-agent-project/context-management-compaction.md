@@ -325,4 +325,4 @@ private async onModelError(error: AssistantMessage, context: AgentContext): Prom
 
 上一篇：[第 1 章：Agent Loop 核心流转与生命周期控制](/blog/how-to-build-your-own-agent-project/agent-loop-lifecycle/)
 
-下一章：权限系统、Bash AST 静态分析与审批拦截（待发布）。
+下一篇：[第 3 章：工具安全执行：权限审批、Bash AST 分析与进程管控](/blog/how-to-build-your-own-agent-project/tool-safety-permissions/)

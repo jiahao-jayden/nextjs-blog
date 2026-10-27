@@ -37,3 +37,13 @@
 - 保留原文，仅移除正文重复一级标题，修正重复的第三步为第四步及“変化”错字，添加元数据、上下章导航；第 1 章末尾已链接到第 2 章。
 - `yarn build` 通过，包含类型检查、静态页面生成、搜索索引与 RSS。浏览器已读到本地文章标题与正文，截图请求超时，未完成视觉检查。用户对打开浏览器提出疑问，后续使用命令行验证，不再自行打开浏览器。
 - 生产站点通过推送 `main` 触发 Vercel 自动部署；本轮发布状态以 Git 提交和部署记录为准。
+
+
+## 2026-10-27：第 3、4 章发布
+
+- 类型：文章发布。
+- 摘要：从 `/Users/jayden/code/jai-mono/docs/book/3.md`、`4.md` 导入工具安全执行与会话持久化两篇原稿；博客路径分别为 `tool-safety-permissions`、`session-persistence-recovery`，发布日期 2026-10-27，均非草稿。
+- 决策与放弃：正文完整保留，仅移除重复一级标题，添加元数据、摘要和章节导航；源文件以同名 `.source.md` 保存。补齐第 2→3→4 章链接。首页改版、第 2 章待审封面等既有改动不随本次发布。
+- 验证：在仅包含已提交代码与本次文章变更的独立目录运行 `yarn build` 通过（TypeScript、31 个静态页面、RSS）；原稿与快照逐字节一致，正文完整一致，站内文章链接、编译后元数据、目录、静态 HTML、搜索索引及 sitemap 检查通过。首次软链接依赖造成 TS2742，复制依赖后通过，未修改产品代码。按既有偏好未打开浏览器。
+- 遗留与下一步：提交并推送后核验生产部署与两个正式地址；第 5 章 Extension 尚未发布。既有封面及首页变更继续留在本地。
+- review 重点：`data/blog/how-to-build-your-own-agent-project/tool-safety-permissions.md:1`、`data/blog/how-to-build-your-own-agent-project/session-persistence-recovery.md:1`；本轮是原稿发布，未进行外部技术事实复核。
