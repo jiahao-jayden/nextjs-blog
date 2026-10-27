@@ -6,10 +6,14 @@ tags:
   - agent
   - infra
 draft: false
+images:
+  - /static/images/session-persistence-recovery/00-cover-ggbond-journal.webp
 summary: '结合 jai-mono 源码，拆解树形 Session Journal、消息与业务状态的同步回退、工具执行前后的 T1/T2 边界，以及崩溃后的恢复与幂等重试。'
 ---
 
 > 自己动手构建 Agent · 第 4 章 · 上一章：[工具安全执行：权限审批、Bash AST 分析与进程管控](/blog/how-to-build-your-own-agent-project/tool-safety-permissions/)
+
+![会话持久化：古典蚀刻风格的猪猪侠、树形日志与档案长廊](/static/images/session-persistence-recovery/00-cover-ggbond-journal.webp)
 
 在前三章里，我们沿着一条主线搭起了 Agent 的执行骨架：用 `packages/ai` 抹平模型协议差异，用 `agentLoop` 驱动多轮工具调用，再加上上下文压缩（Compaction）与权限拦截。
 

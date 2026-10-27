@@ -47,3 +47,13 @@
 - 验证：在仅包含已提交代码与本次文章变更的独立目录运行 `yarn build` 通过（TypeScript、31 个静态页面、RSS）；原稿与快照逐字节一致，正文完整一致，站内文章链接、编译后元数据、目录、静态 HTML、搜索索引及 sitemap 检查通过。首次软链接依赖造成 TS2742，复制依赖后通过，未修改产品代码。按既有偏好未打开浏览器。
 - 遗留与下一步：提交并推送后核验生产部署与两个正式地址；第 5 章 Extension 尚未发布。既有封面及首页变更继续留在本地。
 - review 重点：`data/blog/how-to-build-your-own-agent-project/tool-safety-permissions.md:1`、`data/blog/how-to-build-your-own-agent-project/session-persistence-recovery.md:1`；本轮是原稿发布，未进行外部技术事实复核。
+
+
+### 第 3、4 章封面补充（2026-10-27）
+
+- 类型：系列封面补齐。
+- 摘要：内置 image_gen 生成两张 1983×793 封面；第 3 章为古典拱门与权限闸门，第 4 章按用户要求融合猪猪侠飞行动作与西方古典档案长廊、树形日志及分支金线。
+- 决策与放弃：延续暖象牙羊皮纸、橄榄黑铜版蚀刻、克制金线、双线细边框、左侧衬线大标题；猪猪侠红衣用古典手工上色处理。参考 Agent Loop、Context Compaction 实图及用户提供的猪猪侠截图。原图、参考图和完整提示词保存于 `assets/tool-safety-permissions/`、`assets/session-persistence-recovery/`；网页 WebP 位于对应 `public/static/images/` 目录，接入正文、Open Graph 和 Twitter 分享图。
+- 验证：逐图目视检查文字、构图及系列风格；WebP 编码后尺寸一致，约 502KB / 510KB；独立目录 `yarn build` 通过；解析静态 HTML 确认正文图片及两种分享元数据引用正确；`git diff --check` 通过。
+- 遗留与下一步：推送后检查正式文章及封面资源；仍保留既有首页改版和第 2 章待审封面。
+- review 重点：两篇文章 frontmatter `images` 与正文图片一致；`assets/session-persistence-recovery/cover-prompt.json` 记录猪猪侠与西方艺术融合要求。

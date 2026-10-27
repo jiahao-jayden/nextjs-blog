@@ -6,10 +6,14 @@ tags:
   - agent
   - infra
 draft: false
+images:
+  - /static/images/tool-safety-permissions/00-cover-gatehouse.webp
 summary: '结合 jai-mono 源码，拆解权限审批生命周期、Bash AST 命令分析、真实路径校验、有界 I/O，以及子进程环境隔离与取消清理。'
 ---
 
 > 自己动手构建 Agent · 第 3 章 · 上一章：[上下文管理、KV Cache 断点与 Compaction](/blog/how-to-build-your-own-agent-project/context-management-compaction/)
+
+![工具安全执行：古典拱门与权限闸门](/static/images/tool-safety-permissions/00-cover-gatehouse.webp)
 
 前两章我们搭好了 `agentLoop` 和上下文压缩，Agent 已经可以在长任务里一轮接一轮地推进了。但在前两章的视角里，工具调用还只是一个抽象的 `await tool.execute(args)`。一旦把 `Read`、`Write`、`Edit` 和 `Bash` 这几个真能读写本地磁盘、启动操作系统子进程的工具接进主循环，马上就会遇到三个非常现实的工程问题：
 
