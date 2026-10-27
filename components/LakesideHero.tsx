@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import Image from "@/components/Image";
 import LakeWater from "@/components/LakeWater";
+import LakesideLoader from "@/components/LakesideLoader";
 import { type Tuft, tufts } from "@/components/lakesideTufts";
 import siteMetadata from "@/data/siteMetadata";
 import styles from "./LakesideHero.module.css";
@@ -69,8 +70,8 @@ export default function LakesideHero() {
 					src={`${SRC}/background-wide.webp`}
 					alt=""
 					fill
-					priority
-					sizes="max(100vw, 178svh)"
+					preload
+					unoptimized
 					className={styles.background}
 				/>
 				<LakeWater className={styles.canvas} />
@@ -82,6 +83,7 @@ export default function LakesideHero() {
 						muted
 						loop
 						playsInline
+						preload="auto"
 						aria-hidden="true"
 					>
 						<source src={`${BASE}${SRC}/road.webm`} type="video/webm" />
@@ -93,24 +95,25 @@ export default function LakesideHero() {
 							className={`${styles.layer} ${layer.motion ? styles[layer.motion] : ""}`}
 							style={layerStyle(layer)}
 						>
-							<Image src={`${SRC}/${layer.asset}.webp`} alt="" fill sizes="30vw" />
+							<Image src={`${SRC}/${layer.asset}.webp`} alt="" fill preload sizes="30vw" />
 						</div>
 					))}
 					<div className={styles.panda} style={{ maskImage: `url(${BASE}${SRC}/panda-video-mask.webp)` }}>
-						<Image src={`${SRC}/panda-still.webp`} alt="" fill sizes="40vw" />
-						<video autoPlay muted loop playsInline aria-hidden="true">
+						<Image src={`${SRC}/panda-still.webp`} alt="" fill preload sizes="40vw" />
+						<video autoPlay muted loop playsInline preload="auto" aria-hidden="true">
 							<source src={`${BASE}${SRC}/panda.webm`} type="video/webm" />
 							<source src={`${BASE}${SRC}/panda.mp4`} type="video/mp4" />
 						</video>
 					</div>
 					{tufts.map((tuft) => (
 						<div key={`${tuft.x},${tuft.y}`} className={styles.tuft} style={tuftStyle(tuft)}>
-							<Image src={`${SRC}/grass.webp`} alt="" fill sizes="12vw" className={styles.blade} />
+							<Image src={`${SRC}/grass.webp`} alt="" fill preload sizes="12vw" className={styles.blade} />
 						</div>
 					))}
 				</div>
 			</div>
 			<h1 className="sr-only">{siteMetadata.description}</h1>
+			<LakesideLoader />
 		</section>
 	);
 }
