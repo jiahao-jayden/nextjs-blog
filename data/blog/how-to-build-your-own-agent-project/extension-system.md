@@ -1,5 +1,5 @@
 ---
-title: '能力扩展：从直接修改核心代码到统一的 Extension 架构'
+title: '为什么 Agent 越写越像 React？'
 date: '2026-10-28'
 tags:
   - ai

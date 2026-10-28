@@ -70,5 +70,11 @@
 - 摘要：导入 `/Users/jayden/code/jai-mono/docs/book/5.md`，博客路径 `extension-system`，日期 2026-10-28，非草稿。原稿快照为 `extension-system.source.md`。补齐第 4→5 章导航，并将文中 0–5 章相对文件链接换为正式博客路径。
 - 决策与放弃：保留全文与全部 15 段代码/图表源码，仅去掉重复一级标题、将两处“前四章”修正为“前面几章”、添加发布元数据与导航。封面使用内置 image_gen，延续羊皮纸、古典蚀刻与金线，以中央穹顶和可拼接翼廊表达统一扩展契约；原图与提示词位于 `assets/extension-system/`，网页 WebP 位于 `public/static/images/extension-system/`（1983×793，530478 字节）。
 - 验证：独立发布快照 `/private/tmp/blog-chapter5-c42xhlne` 的 `yarn build` 通过（类型检查、32 个静态页面、RSS）；原稿快照逐字一致，正文与全部代码围栏核对通过；Mermaid CLI 成功渲染原图语法。静态 HTML 核验两张表格、文章末尾、正文封面、Open Graph/Twitter 分享图及双向章节导航；搜索、RSS、sitemap 均包含新文章。未打开用户浏览器。
-- 遗留与下一步：本次按用户指令发布到博客；推送后核验 Vercel 部署与正式文章、封面地址。X 平台不在本轮发布范围。
+- 遗留与下一步：提交 `a04513a` 已推送 `origin/main`，Vercel 部署 success；正式文章与封面 HTTP 200，线上标题、正文末尾、两张表格、分享图、第四章到第五章导航核验通过，封面逐字节匹配。X 平台不在本轮发布范围。下一次从用户指定的新内容或发布渠道继续。
 - review 重点：`data/blog/how-to-build-your-own-agent-project/extension-system.md:1` 与第 4 章末尾导航；这是原稿发布，未做外部技术事实复核。
+
+### 第 5 章标题调整
+
+用户认为原题缺乏吸引力，改为“为什么 Agent 越写越像 React？”，以正文全书总结中的 React 类比为入口。同步更新第 4 章的下一篇链接文字，文章地址沿用 `extension-system`。
+
+验证：独立快照 `yarn build` 通过，文章、Open Graph/Twitter 标题、搜索索引、RSS 和第四章导航均已更新。
