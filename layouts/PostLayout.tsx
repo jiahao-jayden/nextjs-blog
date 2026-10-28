@@ -36,10 +36,10 @@ export default function PostLayout({ content, authorDetails, next, prev, toc, ch
       <ScrollTopAndComment />
       <article className="relative">
         {tocItems.length > 1 && (
-          <aside className="absolute top-10 left-full ml-12 hidden w-44 xl:block">
+          <aside className="fixed top-24 left-[calc(50%+23rem)] hidden w-44 lg:block xl:left-[calc(50%+24rem)]">
             <nav
               aria-label="Table of contents"
-              className="border-divider dark:border-dark-divider sticky top-24 border-l pl-4"
+              className="border-divider dark:border-dark-divider max-h-[calc(100vh-8rem)] overflow-y-auto border-l pl-4"
             >
               <p className="text-muted dark:text-dark-muted mb-3 text-xs font-medium">On this page</p>
               <TOCInline
