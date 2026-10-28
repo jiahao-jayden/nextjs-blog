@@ -1,0 +1,13 @@
+flowchart TB
+  subgraph Constant ["发给大模型的常驻工具列表 context.tools<br/>(永远固定不变，锁死 KV Cache)"]
+    Core["基础工具: Read / Edit / Bash / Skill ..."]
+    Front["两个固定入口工具:<br/>1. SearchTools(query)<br/>2. ExecuteTool(toolRef, input)"]
+  end
+
+  subgraph Dynamic ["内存中的后台工具仓库 ToolCatalog<br/>(随时增删热更新，不进 context.tools)"]
+    MCP["MCP 扩展注册的 80+ 工具"]
+    Conn["Connector 扩展注册的工具"]
+  end
+
+  Front -- "第 1 步: 看着清单上的名字调 SearchTools('github create_issue')<br/>取回该工具的 toolRef 与 JSON 参数格式" --> Dynamic
+  Front -- "第 2 步: 调 ExecuteTool(toolRef, input)<br/>内部还原为真实工具并走权限审批" --> Dynamic
