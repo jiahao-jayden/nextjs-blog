@@ -89,6 +89,13 @@ export default function LakesideHero() {
 						<source src={`${BASE}${SRC}/road.webm`} type="video/webm" />
 						<source src={`${BASE}${SRC}/road.mp4`} type="video/mp4" />
 					</video>
+					<div className={styles.panda} style={{ maskImage: `url(${BASE}${SRC}/panda-video-mask.webp)` }}>
+						<Image src={`${SRC}/panda-still.webp`} alt="" fill preload sizes="40vw" />
+						<video autoPlay muted loop playsInline preload="auto" aria-hidden="true">
+							<source src={`${BASE}${SRC}/panda.webm`} type="video/webm" />
+							<source src={`${BASE}${SRC}/panda.mp4`} type="video/mp4" />
+						</video>
+					</div>
 					{layers.map((layer) => (
 						<div
 							key={layer.id}
@@ -98,13 +105,6 @@ export default function LakesideHero() {
 							<Image src={`${SRC}/${layer.asset}.webp`} alt="" fill preload sizes="30vw" />
 						</div>
 					))}
-					<div className={styles.panda} style={{ maskImage: `url(${BASE}${SRC}/panda-video-mask.webp)` }}>
-						<Image src={`${SRC}/panda-still.webp`} alt="" fill preload sizes="40vw" />
-						<video autoPlay muted loop playsInline preload="auto" aria-hidden="true">
-							<source src={`${BASE}${SRC}/panda.webm`} type="video/webm" />
-							<source src={`${BASE}${SRC}/panda.mp4`} type="video/mp4" />
-						</video>
-					</div>
 					{tufts.map((tuft) => (
 						<div key={`${tuft.x},${tuft.y}`} className={styles.tuft} style={tuftStyle(tuft)}>
 							<Image src={`${SRC}/grass.webp`} alt="" fill preload sizes="12vw" className={styles.blade} />
