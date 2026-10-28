@@ -1,5 +1,5 @@
 ---
-title: '为什么 Agent 越写越像 React？'
+title: '如何设计优雅的 Agent 扩展机制：接入 Skills、MCP 与 Subagent'
 date: '2026-10-28'
 tags:
   - ai

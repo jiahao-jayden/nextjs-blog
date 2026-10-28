@@ -75,6 +75,9 @@
 
 ### 第 5 章标题调整
 
-用户认为原题缺乏吸引力，改为“为什么 Agent 越写越像 React？”，以正文全书总结中的 React 类比为入口。同步更新第 4 章的下一篇链接文字，文章地址沿用 `extension-system`。
-
-验证：独立快照 `yarn build` 通过，文章、Open Graph/Twitter 标题、搜索索引、RSS 和第四章导航均已更新。
+- 类型：标题编辑与发布。
+- 摘要：最终标题为“如何设计优雅的 Agent 扩展机制：接入 Skills、MCP 与 Subagent”，同步更新第四章下一篇链接文字。
+- 决策与放弃：用户明确希望突出统一 Extension 机制接入大部分 Agent 能力，标题围绕扩展机制及 Skills/MCP/Subagent 展开；React 类比保留在正文总结中。文章地址沿用 `extension-system`。
+- 验证：标题与导航精确替换，正文未改；发布前检查 frontmatter 与 Git diff，发布后检查 Vercel 状态及线上分享标题。
+- 遗留与下一步：下一次继续按用户指定内容或渠道处理。
+- review 重点：`data/blog/how-to-build-your-own-agent-project/extension-system.md:2` 与第四章末尾导航。
