@@ -325,4 +325,4 @@ export function recoverOperation(records: readonly OperationRecord[], evidence: 
 
 上一篇：[第 3 章：工具安全执行：权限审批、Bash AST 分析与进程管控](/blog/how-to-build-your-own-agent-project/tool-safety-permissions/)
 
-下一章：Extension 扩展系统（待发布）。
+下一篇：[第 5 章：能力扩展：从直接修改核心代码到统一的 Extension 架构](/blog/how-to-build-your-own-agent-project/extension-system/)

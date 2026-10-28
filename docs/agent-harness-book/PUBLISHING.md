@@ -62,3 +62,13 @@
 - 验证：逐图目视检查文字、构图及系列风格；WebP 编码后尺寸一致，约 502KB / 510KB；独立目录 `yarn build` 通过；解析静态 HTML 确认正文图片及两种分享元数据引用正确；`git diff --check` 通过。
 - 遗留与下一步：提交 `35222dc` 已推送，Vercel 部署成功；两篇文章及两张 WebP 均 HTTP 200，线上 Open Graph/Twitter 引用正确，图片逐字节匹配。仍保留既有首页改版和第 2 章待审封面；下次先确认这些剩余变更的发布安排。
 - review 重点：两篇文章 frontmatter `images` 与正文图片一致；`assets/session-persistence-recovery/cover-prompt.json` 记录猪猪侠与西方艺术融合要求。
+
+
+## 2026-10-28：第 5 章发布
+
+- 类型：文章发布与系列封面。
+- 摘要：导入 `/Users/jayden/code/jai-mono/docs/book/5.md`，博客路径 `extension-system`，日期 2026-10-28，非草稿。原稿快照为 `extension-system.source.md`。补齐第 4→5 章导航，并将文中 0–5 章相对文件链接换为正式博客路径。
+- 决策与放弃：保留全文与全部 15 段代码/图表源码，仅去掉重复一级标题、将两处“前四章”修正为“前面几章”、添加发布元数据与导航。封面使用内置 image_gen，延续羊皮纸、古典蚀刻与金线，以中央穹顶和可拼接翼廊表达统一扩展契约；原图与提示词位于 `assets/extension-system/`，网页 WebP 位于 `public/static/images/extension-system/`（1983×793，530478 字节）。
+- 验证：独立发布快照 `/private/tmp/blog-chapter5-c42xhlne` 的 `yarn build` 通过（类型检查、32 个静态页面、RSS）；原稿快照逐字一致，正文与全部代码围栏核对通过；Mermaid CLI 成功渲染原图语法。静态 HTML 核验两张表格、文章末尾、正文封面、Open Graph/Twitter 分享图及双向章节导航；搜索、RSS、sitemap 均包含新文章。未打开用户浏览器。
+- 遗留与下一步：本次按用户指令发布到博客；推送后核验 Vercel 部署与正式文章、封面地址。X 平台不在本轮发布范围。
+- review 重点：`data/blog/how-to-build-your-own-agent-project/extension-system.md:1` 与第 4 章末尾导航；这是原稿发布，未做外部技术事实复核。
